@@ -1,90 +1,87 @@
-📚 Genshin MiniRAG — Offline Assistant with Local LLM
-A fully offline Retrieval-Augmented Generation (RAG) assistant for Genshin Impact.
-Helps players answer questions about characters, builds, constellations, and more — no internet required.
+# ✨ Genshin MiniRAG: Offline Assistant with Local LLM
 
-🚀 Project Versions
-✅ 1️⃣ Prototype
-Initial proof of concept to run entirely locally on Android.
+An offline Retrieval-Augmented Generation (RAG) pipeline for a Genshin Impact assistant using a lightweight local LLM — no internet needed!
 
-Uses a very lightweight local LLM and tiny dataset.
+---
 
-Shows that a mobile device can do local vector search + generation.
+## 🎮 Project Overview
 
-Focus: efficient, minimal RAM usage.
+This project is a proof-of-concept **Genshin Impact helper bot** that runs entirely offline.  
+It combines a local knowledge base with semantic search and a small LLM to answer player queries about characters, builds, or lore.
 
-✅ 2️⃣ Local LLM — 2B Parameter Model
-Upgraded to a 2 billion parameter open-weight model for better response quality.
+The goal is to make an efficient, privacy-friendly assistant for players, especially on low-resource devices.
 
-Still 100% offline — no API calls to OpenAI or external services.
+---
 
-Suitable for more powerful Android devices or desktops.
+## 📂 Key Features
 
-Handles more complex, detailed queries.
+✅ Lightweight **RAG pipeline** (Retrieval-Augmented Generation)  
+✅ Uses **local embeddings** to find relevant context chunks  
+✅ Generates answers using a **small local LLM**  
+✅ Runs fully offline, no internet or cloud calls required  
+✅ Optimized for minimal RAM and CPU usage
 
-✅ 3️⃣ Expanded Context Version
-Adds a larger, richer dataset for retrieval.
+---
 
-Connects more in-depth context about characters, constellations, builds, and lore.
+## 📚 Dataset
 
-Uses local embeddings for improved matching of user queries to the right text chunks.
+- A custom **JSONL file** built from cleaned YouTube transcriptions about Genshin characters, builds, and gameplay tips.
+- Text chunks are embedded for semantic search to find the most relevant context for each question.
 
-Balances bigger context with local device resource limits.
+---
 
-📁 Datasets
-📊 Sources:
+## 🛠️ Technologies Used
 
-Genshin Impact Characters Dataset
-→ Kaggle dataset providing structured info about all characters, elements, weapons, stats, etc.
+- **Python**
+- **LangChain**
+- **FAISS** or **Chroma** (vector store for embeddings)
+- **Local LLM** (e.g., `Phi-2` or similar)
+- **SentenceTransformers**
+- **Streamlit** (optional UI)
 
-genshin_dataset_cleaned.jsonl
-→ A cleaned version of transcriptions from various YouTubers’ build guide videos.
-→ Provides real community strategies and tips to help the LLM give practical, contextual answers.
+---
 
-🔍 Local embedding store:
-Uses these datasets for retrieval before passing the context to the local LLM.
+## 📌 Project Structure
 
-🔑 How It Works
-MiniRAG: Combines local vector database + local LLM.
+```plaintext
+Genshin-MiniRAG-Offline-Assistant-with-Local-LLM/
+├── data/               # JSONL knowledge base
+├── embeddings/         # Saved vector embeddings
+├── app.py              # Main RAG pipeline and chat interface
+├── models/             # Local LLM weights or configs
+├── requirements.txt    # Project dependencies
+└── README.md
+```
 
-No cloud required: All embeddings and models are local.
 
-Flexible: You can expand the dataset anytime with more game updates.
+---
 
-Optimized: Prototype is tiny; 2B+ versions need a stronger GPU or device.
+## ⚙️ How It Works
 
-🗂️ Repo Structure
-prototype/ — Mobile-first POC.
+1. **Preprocess** the dataset into clean text chunks.
+2. **Embed** the chunks using a sentence embedding model.
+3. Store embeddings in a local vector store (**FAISS**, **Chroma**, etc.).
+4. For each query, run **semantic search** to find relevant context.
+5. Pass the context and query to the **local LLM** to generate the final answer.
+6. Optionally run a simple **Streamlit** UI for local chat.
 
-local_llm/ — 2B model version.
+---
 
-expanded/ — Extended dataset version with both Kaggle and community guides.
+## 📈 Future Improvements
+Add support for larger local LLMs with quantization for better answers.
 
-⚡ Features
-✅ Character-specific answers: weapons, builds, constellations.
+Improve chunking and retrieval accuracy.
 
-✅ Works fully offline.
+Build a mobile-friendly offline app.
 
-✅ Local vector search ensures relevant context.
+## 🙌 Acknowledgements
+Inspired by open-source RAG examples using LangChain and local LLMs.
 
-✅ Cross-platform: Linux, Windows, Android (powerful enough hardware).
+Genshin Impact knowledge sourced from publicly available guides and transcriptions.
 
-📌 Roadmap
-Add more up-to-date constellations data.
+## 📬 Contact
+- GitHub: Akki-Maharaj
+- Linkedin: https://www.linkedin.com/in/akshat--/
+Feel free to open issues or suggest improvements!
 
-Experiment with different quantized models for lower-end phones.
-
-Bundle everything as an APK for easy install.
-
-Add a simple chat interface for mobile.
-
-📑 Credits
-Prototype, expansions, and local LLM setup by Akki Maharaj
-
-Datasets:
-
-Kaggle — Genshin Impact Characters
-
-genshin_dataset_cleaned.jsonl — YouTube transcriptions (cleaned and community-friendly).
-
-🔗 Repo
-Akki-Maharaj/Genshin-MiniRAG-Offline-Assistant-with-Local-LLM
+---
